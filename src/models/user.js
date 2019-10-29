@@ -13,8 +13,8 @@ const User = mongoose.model('User', {
         trim: true,
         lowerCase: true,
         validate(value) {
-            if (validator.isEmail(value)) {
-                throw new Error('Email is valid')
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid')
             }
         }
     },
