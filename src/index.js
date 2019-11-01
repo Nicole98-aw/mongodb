@@ -3,7 +3,7 @@ require('./db/mongoose');
 const User = require('./models/user');
 const Task = require('./models/task');
 
-const app = express();
+const app = express(); //instantiating express app
 const port = process.env.PORT || 3000; //specifying the port that will be used by server & if it doesn't exist 3000 is used
 
 app.use(express.json()); //use express to format data 
