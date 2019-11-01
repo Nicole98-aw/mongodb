@@ -8,17 +8,23 @@ const port = process.env.PORT || 3000; //specifying the port that will be used b
 
 app.use(express.json()); //use express to format data 
 
-app.post('/users', (req, res) => {
+app.post('/users', async (req, res) => { // path for creating through /users
     const user = new User(req.body);
 
-    user.save().then(() => {
+    // user.save().then(() => {
+    //     res.status(201).send(user);
+    // }).catch((error) => {
+    //     res.status(400).send(error);
+    // });
+    try {
+        await user.save();
         res.status(201).send(user);
-    }).catch((error) => {
-        res.status(400).send(error);
-    });
+    } catch (e) {
+        res.status(400).send(e);
+    }
 });
 
-app.get('/users', (req, res) => {
+app.get('/users', (req, res) => { //path for retrieving data through /users
     User.find({}).then((users) => {
         res.send(users);
     }).catch((error) => {
