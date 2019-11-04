@@ -23,6 +23,9 @@ const myFunction = async () => {
 
     console.log(password);
     console.log(hashedPassword);
+
+    const isMatch = await bcrypt.compare('batman', hashedPassword);
+    console.log(isMatch);
 };
 
 myFunction();
